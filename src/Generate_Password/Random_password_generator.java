@@ -11,6 +11,11 @@ public class Random_password_generator {
 
     public static void main(String[] args) {
 
+        String password = generate_password();
+
+        System.out.println("\nGenerated Password Result: " + password);
+
+        System.out.println("\nIs This Password Strong Enough?: " + is_generate_password_strong(password));
     }
 
     public static String generate_password() {
@@ -30,6 +35,8 @@ public class Random_password_generator {
 
 
     public static boolean is_generate_password_strong(String password) {
+
+        generate_password();
 
         String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&*()-_+=<>?]).{16,}$";
 

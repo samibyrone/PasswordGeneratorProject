@@ -3,7 +3,7 @@ package Generate_Password;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class Random_password_generatorTest {
 
@@ -46,6 +46,20 @@ public class Random_password_generatorTest {
     @Test void password_generator_length_which_contains_specialCharactersTest() {
         String password = generator.generate_password();
         assertEquals(password.matches(".*[@#$%^&*()-_+=<>?].*"), true, "Password should contain at least minimum of one special character");
+    }
+
+    @Test
+    public void password_generator_length_is_strong_without_digit() {
+        String password = "Abcdefghijklmnn@";
+        boolean password_strength = generator.is_generate_password_strong(password);
+        assertEquals(false, password_strength, "Password should contain at least minimum of one digit");
+    }
+
+    @Test
+    public void password_generator_length_with_than_required_lengthTest() {
+        String password = "Abcdefghijklmno12@";
+        boolean password_strength = generator.is_generate_password_strong(password);
+        assertEquals(true, password_strength, "Password should not be more than 16 characters long");
     }
 
     @Test
